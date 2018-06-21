@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Google Map with default color</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="shortcut icon" type="image/ico" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head>
+
+<body>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+   <div id="map"></div>
+
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 31.533963, lng: 74.350272},
+          zoom: 4
+        });
+        var infowindow = new google.maps.InfoWindow();
+        var locations = [
+        ['Turkey', 39.321455, 35.372972, 4],
+        ['Afghanistan', 33.868248, 64.052969, 5],
+        ['Suadi Arabia', 23.431721, 46.826347, 3],
+        ['India', 23.003844, 79.137902, 2],
+        ['Mangolia', 46.535539, 103.627640, 1]
+        ];
+
+        var icon = {
+          url: "img/marker.png", // url
+          scaledSize: new google.maps.Size(20, 20), // scaled size
+          origin: new google.maps.Point(0,0), // origin
+          anchor: new google.maps.Point(0, 0) // anchor
+        };
+
+        var i, marker;
+        for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map,
+            icon: icon
+          });
+
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i))
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBy1S0-03tGKXaJ4XdaEQTDqvttSFSlHpo&callback=initMap"
+    async defer></script>
+
+  <script src="js/vendor/modernizr-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
+</html>
