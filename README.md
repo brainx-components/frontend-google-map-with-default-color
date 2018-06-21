@@ -13,7 +13,7 @@ There is nothing complex, just clone the project and BOOM.
 ### Screenshot of UI:
 
 
-![alt text](https://github.com/brainx-components/frontend-google-charts/blob/master/google-charts.PNG)
+![alt text](https://github.com/brainx-components/frontend-google-map-with-default-color/blob/develop/img/screen-short/pincard-detail.PNG)
 
 
 
